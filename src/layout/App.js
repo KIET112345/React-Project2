@@ -1,58 +1,48 @@
-import React, { Component, Fragment } from 'react';
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { initialData } from '../actionsStore/shared';
-import { connect } from 'react-redux';
-import Login from './Login';
-import Nav from './Nav';
-import Home from './Home';
-import UserCard from './UserCard';
-import NewQuestion from './NewQuestion';
-import Leaderboard from './Leaderboard';
-import NoMatchQuestion from './NoMatchQuestion';
+import { Fragment, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { initialData } from "../actionsStore/shared";
+import { connect } from "react-redux";
+import Login from "./Login";
+import Home from "./Home";
+import UserCard from "./UserCard";
+import NewQuestion from "./NewQuestion";
+import Leaderboard from "./Leaderboard";
+import NoMatchQuestion from "./NoMatchQuestion";
+import LayoutsWithNavbar from "./LayoutsWithNavbar";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.initialData();
-  }
-  render() {
-    const { authUser } = this.props;
-    return (
-      <div className="App">
-        <Routes>
-          {authUser === null ? (
-            <Fragment>
-              <Route path = "*" element = {<Login />} />
-            </Fragment>
-          ) : (
-            <Fragment>
-                <Route path="/" element={<LayoutsWithNavbar />}>
-                    <Route path = "/" element = {<Home />} />
-                    <Route path = "/questions/wrong_id" element = {<NoMatchQuestion />} />
-                    <Route path = "/questions/:question_id" element = {<UserCard />} />
-                    <Route path = "/add" element = {<NewQuestion />} />
-                    <Route path = "/leaderboard" element = {<Leaderboard />} />
-                </Route>
-            </Fragment>
-          )}
-        </Routes>
-      </div>
-    );
-  }
-}
+const App = (props) => {
+  const { authUser } = props;
+  useEffect(() => {
+    props.initialData();
+  }, []);
 
-function LayoutsWithNavbar() {
-    return (
-        <div>
-            <Nav />
-            <Outlet />
-        </div>
-    );
-}
+  return (
+    <div className="App">
+      <Routes>
+        {authUser === null ? (
+          <Fragment>
+            <Route path="*" element={<Login />} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Route path="/" element={<LayoutsWithNavbar />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/questions/wrongId" element={<NoMatchQuestion />} />
+              <Route path="/questions/:question_id" element={<UserCard />} />
+              <Route path="/add" element={<NewQuestion />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+            </Route>
+          </Fragment>
+        )}
+      </Routes>
+    </div>
+  );
+};
 
-function mapStateToProps({authUser}) {
+function mapStateToProps({ authUser }) {
   return {
-    authUser
+    authUser,
   };
 }
 
-export default connect(mapStateToProps, {initialData})(App);
+export default connect(mapStateToProps, { initialData })(App);

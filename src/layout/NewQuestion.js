@@ -1,87 +1,94 @@
-// NewPoll.js
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Segment, Header, Grid, Divider, Form, Dimmer, Loader } from 'semantic-ui-react';
-import { onSaveQuestion } from '../actionsStore/questions';
+import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  Segment,
+  Header,
+  Grid,
+  Divider,
+  Form,
+  Dimmer,
+  Loader,
+} from "semantic-ui-react";
+import { onSaveQuestion } from "../actionsStore/questions";
+import { useState } from "react";
 
-export class NewQuestion extends Component {
-  static propTypes = {
-    authUser: PropTypes.string.isRequired,
-    onSaveQuestion: PropTypes.func.isRequired
+const NewQuestion = (props) => {
+  const [validSubmit, setValidSubmit] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
+  const [option_1, setOption_1] = useState("");
+  const [option_2, setOption_2] = useState("");
+  const disabledSubmit = option_1 === "" || option_2 === "";
+  const handleChange1 = (e) => {
+    setOption_1(e.target.value);
   };
-
-  state = {
-    validSubmit: false,
-    isLoading: false,
-    option1: '',
-    option2: ''
+  const handleChange2 = (e) => {
+    setOption_2(e.target.value);
   };
-
-  handleChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { authUser, onSaveQuestion } = this.props;
-    const { option1, option2 } = this.state;
-
+    const { authUser, onSaveQuestion } = props;
     new Promise((res, rej) => {
-      this.setState({ isLoading: true });
-      onSaveQuestion(option1, option2, authUser);
-      setTimeout(() => res('success'), 1000);
+      setIsloading(true);
+      onSaveQuestion(option_1, option_2, authUser);
+      setTimeout(() => res("success"), 1000);
     }).then(() => {
-      this.setState({
-        option1: '',
-        option2: '',
-        validSubmit: true
-      });
+      setValidSubmit(true);
+      setOption_1("");
+      setOption_2("");
     });
   };
 
-  render() {
-    const disabled = this.state.option1 === '' || this.state.option2 === '';
-
-    if (this.state.validSubmit === true) {
-      return <Navigate to = "/" />;
-    }
-    
-    return (
-      <Segment.Group>
-        <Header as = "h3" textAlign = "left" block attached = "top">
-          Create a New Question
-        </Header>
-
-        <Grid padded>
-          <Grid.Column>
-            {this.state.isLoading && (
-              <Dimmer active inverted>
-                <Loader content = "Updating" />
-              </Dimmer>
-            )}
-            <p>Add a new question:</p>
-            <p>
-              <strong>Would You Rather</strong>
-            </p>
-            <Form onSubmit = {this.handleSubmit}>
-              <Form.Input id = "option1" placeholder = "Enter first option" value = {this.state.option1} onChange = {this.handleChange} required />
-              <Divider horizontal>OR</Divider>
-              <Form.Input id = "option2" placeholder = "Enter second option" value = {this.state.option2} onChange = {this.handleChange} required />
-              <Form.Button positive size = "tiny" fluid disabled = {disabled}>Submit</Form.Button>
-            </Form>
-          </Grid.Column>
-        </Grid>
-      </Segment.Group>
-    );
+  if (validSubmit) {
+    return <Navigate to="/" />;
   }
-}
+
+  return (
+    <Segment.Group>
+      <Header as="h3" textAlign="left" block attached="top">
+        Create a New Question
+      </Header>
+
+      <Grid padded>
+        <Grid.Column>
+          {isLoading && (
+            <Dimmer active inverted>
+              <Loader content="Updating" />
+            </Dimmer>
+          )}
+          <p>Add a new question:</p>
+          <p>
+            <strong>Would you rather to</strong>
+          </p>
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              id="option_1"
+              placeholder="Enter first option"
+              value={option_1}
+              onChange={handleChange1}
+              required
+            />
+            <Divider horizontal>OR</Divider>
+            <Form.Input
+              id="option_2"
+              placeholder="Enter second option"
+              value={option_2}
+              onChange={handleChange2}
+              required
+            />
+            <Form.Button positive size="tiny" fluid disabled={disabledSubmit}>
+              Submit
+            </Form.Button>
+          </Form>
+        </Grid.Column>
+      </Grid>
+    </Segment.Group>
+  );
+};
 
 function mapStateToProps({ authUser }) {
   return {
-    authUser
+    authUser,
   };
 }
 
-export default connect(mapStateToProps, {onSaveQuestion})(NewQuestion);
+export default connect(mapStateToProps, { onSaveQuestion })(NewQuestion);

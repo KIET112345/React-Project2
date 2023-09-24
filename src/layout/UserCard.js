@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Segment, Header, Grid, Image } from "semantic-ui-react";
@@ -8,7 +7,7 @@ import ResultPoll from "./ResultPoll";
 import TeaserPoll from "./TeaserPoll";
 import { withRouter } from "../utils/helper";
 
-const colors = {
+const COLORS = {
   green: {
     name: "green",
     hex: "#21ba45",
@@ -23,7 +22,7 @@ const colors = {
   },
 };
 
-const pollTypes = {
+const POLL_TYPES = {
   POLL_TEASER: "POLL_TEASER",
   POLL_QUESTION: "POLL_QUESTION",
   POLL_RESULT: "POLL_RESULT",
@@ -33,11 +32,11 @@ const PollContent = (props) => {
   const { pollType, question, unanswered } = props;
 
   switch (pollType) {
-    case pollTypes.POLL_TEASER:
+    case POLL_TYPES.POLL_TEASER:
       return <TeaserPoll question={question} unanswered={unanswered} />;
-    case pollTypes.POLL_QUESTION:
+    case POLL_TYPES.POLL_QUESTION:
       return <QuestionPoll question={question} />;
-    case pollTypes.POLL_RESULT:
+    case POLL_TYPES.POLL_RESULT:
       return <ResultPoll question={question} />;
     default:
       return;
@@ -49,9 +48,9 @@ const UserCard = (props) => {
   if (wrongPath) {
     return <Navigate to="questions/wrongId" />;
   }
-  const tabColor = unanswered ? colors.green : colors.blue;
+  const tabColor = unanswered ? COLORS.green : COLORS.blue;
   const borderTop = !unanswered
-    ? `1 px solid ${colors.grey}`
+    ? `1 px solid ${COLORS.grey}`
     : `2px solid ${tabColor.hex}`;
   return (
     <div>
@@ -114,7 +113,7 @@ function mapStateToProps(
 
   if (question_id !== undefined) {
     question = questions[question_id];
-    pollType = pollTypes.POLL_TEASER;
+    pollType = POLL_TYPES.POLL_TEASER;
     author = users[question.author];
   } else {
     const { question_id } = router.params;
@@ -124,9 +123,9 @@ function mapStateToProps(
     if (question === undefined) {
       wrongPath = true;
     } else {
-      pollType = pollTypes.POLL_QUESTION;
+      pollType = POLL_TYPES.POLL_QUESTION;
       if (Object.keys(user.answers).includes(question.id)) {
-        pollType = pollTypes.POLL_RESULT;
+        pollType = POLL_TYPES.POLL_RESULT;
       }
       author = users[question.author];
     }
