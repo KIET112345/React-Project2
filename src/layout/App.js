@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { initialData } from "../actionsStore/shared";
+import { initialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Login from "./Login";
 import Home from "./Home";

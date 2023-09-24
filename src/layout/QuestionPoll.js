@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Header, Button, Form, Radio } from "semantic-ui-react";
-import { onSaveQuestionAnswer } from "../actionsStore/users";
+import { onSaveQuestionAnswer } from "../actions/users";
 
 const QuestionPoll = (props) => {
   const [value, setValue] = useState("");

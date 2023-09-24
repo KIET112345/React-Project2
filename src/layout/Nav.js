@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Menu, Image, Button, Container } from 'semantic-ui-react';
-import { setAuthUser } from '../actionsStore/authUser';
+import { setAuthUser } from '../actions/authUser';
 
 const Nav = (props) => {
   const { authUser, users, setAuthUser } = props;

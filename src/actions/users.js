@@ -1,5 +1,5 @@
 import { saveQuestionAnswer } from '../utils/api';
-import { onAddNewAnswerToQuestion } from '../actionsStore/questions';
+import { onAddNewAnswerToQuestion } from '../actions/questions';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_ANSWER_TO_USER = 'ADD_ANSWER_TO_USER';

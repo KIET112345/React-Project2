@@ -9,7 +9,7 @@ import {
   Dimmer,
   Loader,
 } from "semantic-ui-react";
-import { onSaveQuestion } from "../actionsStore/questions";
+import { onSaveQuestion } from "../actions/questions";
 import { useState } from "react";
 
 const NewQuestion = (props) => {

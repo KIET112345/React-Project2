@@ -1,5 +1,5 @@
 import { saveQuestion } from '../utils/api';
-import { addQuestionToUser } from '../actionsStore/users';
+import { addQuestionToUser } from '../actions/users';
 
 export function onAddNewAnswerToQuestion(authUser, question_id, answer) {
   return {

@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Segment } from "semantic-ui-react";
-import { setAuthUser } from "../actionsStore/authUser";
+import { setAuthUser } from "../actions/authUser";
 import BrandImage from "./login-sup-component/BrandImage";
 import LoginHeader from "./login-sup-component/LoginHeader";
 import LoginGridLayout from "./login-sup-component/LoginGridLayout";
