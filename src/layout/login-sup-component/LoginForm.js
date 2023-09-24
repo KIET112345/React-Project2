@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Header } from "semantic-ui-react";
 
 const LoginForm = (props) => {
-  const { users, onLoading, setAuthUser } = props;
+  const { users, onLoading, setAuthedUser } = props;
   const [value, setValue] = useState("");
   const disabled = value === "" ? true : false;
 
@@ -24,7 +24,7 @@ const LoginForm = (props) => {
     new Promise((resolve, reject) => {
       onLoading();
       setTimeout(() => resolve(), 500);
-    }).then(() => setAuthUser(authUser));
+    }).then(() => setAuthedUser(authUser));
   };
 
   return (

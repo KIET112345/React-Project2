@@ -9,7 +9,7 @@ import {
   Dimmer,
   Loader,
 } from "semantic-ui-react";
-import { onSaveQuestion } from "../actions/questions";
+import { handleSaveQuestion } from "../actions/questions";
 import { useState } from "react";
 
 const NewQuestion = (props) => {
@@ -26,10 +26,10 @@ const NewQuestion = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { authUser, onSaveQuestion } = props;
+    const { authUser, handleSaveQuestion } = props;
     new Promise((res, rej) => {
       setIsloading(true);
-      onSaveQuestion(option_1, option_2, authUser);
+      handleSaveQuestion(option_1, option_2, authUser);
       setTimeout(() => res("success"), 1000);
     }).then(() => {
       setValidSubmit(true);
@@ -91,4 +91,4 @@ function mapStateToProps({ authUser }) {
   };
 }
 
-export default connect(mapStateToProps, { onSaveQuestion })(NewQuestion);
+export default connect(mapStateToProps, { handleSaveQuestion })(NewQuestion);

@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { initialData } from "../actions/shared";
+import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Login from "./Login";
 import Home from "./Home";
@@ -13,7 +13,7 @@ import LayoutsWithNavbar from "./LayoutsWithNavbar";
 const App = (props) => {
   const { authUser } = props;
   useEffect(() => {
-    props.initialData();
+    props.handleInitialData();
   }, []);
 
   return (
@@ -45,4 +45,4 @@ function mapStateToProps({ authUser }) {
   };
 }
 
-export default connect(mapStateToProps, { initialData })(App);
+export default connect(mapStateToProps, { handleInitialData })(App);

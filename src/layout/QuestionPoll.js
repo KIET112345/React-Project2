@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Header, Button, Form, Radio } from "semantic-ui-react";
-import { onSaveQuestionAnswer } from "../actions/users";
+import { handleSaveQuestionAnswer } from "../actions/users";
 
 const QuestionPoll = (props) => {
   const [value, setValue] = useState("");
@@ -13,8 +13,8 @@ const QuestionPoll = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (value !== "") {
-      const { authUser, question, onSaveQuestionAnswer } = props;
-      onSaveQuestionAnswer(authUser, question.id, value);
+      const { authUser, question, handleSaveQuestionAnswer } = props;
+      handleSaveQuestionAnswer(authUser, question.id, value);
     }
   };
   return (
@@ -59,4 +59,4 @@ function mapStateToProps({ authUser }) {
   };
 }
 
-export default connect(mapStateToProps, { onSaveQuestionAnswer })(QuestionPoll);
+export default connect(mapStateToProps, { handleSaveQuestionAnswer })(QuestionPoll);

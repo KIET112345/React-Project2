@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Menu, Image, Button, Container } from 'semantic-ui-react';
-import { setAuthUser } from '../actions/authUser';
+import { setAuthedUser } from '../actions/authUser';
 
 const Nav = (props) => {
   const { authUser, users, setAuthUser } = props;
@@ -38,4 +38,4 @@ function mapStateToProps({users, authUser}) {
   };
 }
 
-export default connect(mapStateToProps, {setAuthUser})(Nav);
+export default connect(mapStateToProps, {setAuthedUser})(Nav);
