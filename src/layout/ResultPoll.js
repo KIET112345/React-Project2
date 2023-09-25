@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { Header, Segment, Progress } from "semantic-ui-react";
-import { withRouter } from "../utils/helper";
+import { withRouterHandle } from "../utils/helper";
 import YourVoteLabel from "./YourVoteLabel";
 
 const styles = {
@@ -77,4 +77,4 @@ function mapStateToProps({ users, authUser }) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(ResultPoll));
+export default withRouterHandle(connect(mapStateToProps)(ResultPoll));

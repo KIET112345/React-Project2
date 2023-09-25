@@ -5,7 +5,7 @@ import { Segment, Header, Grid, Image } from "semantic-ui-react";
 import QuestionPoll from "./QuestionPoll";
 import ResultPoll from "./ResultPoll";
 import TeaserPoll from "./TeaserPoll";
-import { withRouter } from "../utils/helper";
+import { withRouterHandle } from "../utils/helper";
 
 const COLORS = {
   green: {
@@ -139,4 +139,4 @@ function mapStateToProps(
   };
 }
 
-export default withRouter(connect(mapStateToProps)(UserCard));
+export default withRouterHandle(connect(mapStateToProps)(UserCard));

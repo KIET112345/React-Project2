@@ -2,7 +2,7 @@ import { Image } from "semantic-ui-react";
 
 const BrandImage = () => (
   <Image
-    src="/images/avatars/all-member.jpg"
+    src="/images/avatars/company.jpg"
     size="medium"
     centered
     style={{ width: 100 + "%" }}
