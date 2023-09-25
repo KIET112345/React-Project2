@@ -4,10 +4,10 @@ import { Menu, Image, Button, Container } from 'semantic-ui-react';
 import { setAuthedUser } from '../actions/authUser';
 
 const Nav = (props) => {
-  const { authUser, users, setAuthUser } = props;
+  const { authUser, users, setAuthedUser } = props;
   const logout = (e) => {
     e.preventDefault();
-    setAuthUser(null);
+    setAuthedUser(null);
   }
   return (
     <Container>

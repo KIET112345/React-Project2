@@ -28,7 +28,7 @@ const App = (props) => {
             <Route path="/" element={<LayoutsWithNavbar />}>
               <Route path="/" element={<Home />} />
               <Route path="/questions/wrongId" element={<NoMatchQuestion />} />
-              <Route path="/questions/:question_id" element={<UserCard />} />
+              <Route path="/questions/:questionId" element={<UserCard />} />
               <Route path="/add" element={<NewQuestion />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
             </Route>

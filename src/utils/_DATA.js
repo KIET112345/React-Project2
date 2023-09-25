@@ -177,10 +177,10 @@ let questions = {
     })
   }
   
-  export function _saveQuestionAnswer ({ authUser, question_id, answer }) {
+  export function _saveQuestionAnswer ({ authUser, questionId, answer }) {
     return new Promise((resolve, reject) => {
-      if (!authUser || !question_id || !answer) {
-        reject("Please provide authUser, question_id, and answer");
+      if (!authUser || !questionId || !answer) {
+        reject("Please provide authUser, questionId, and answer");
       }
   
       setTimeout(() => {
@@ -190,18 +190,18 @@ let questions = {
             ...users[authUser],
             answers: {
               ...users[authUser].answers,
-              [question_id]: answer
+              [questionId]: answer
             }
           }
         }
   
         questions = {
           ...questions,
-          [question_id]: {
-            ...questions[question_id],
+          [questionId]: {
+            ...questions[questionId],
             [answer]: {
-              ...questions[question_id][answer],
-              votes: questions[question_id][answer].votes.concat([authUser])
+              ...questions[questionId][answer],
+              votes: questions[questionId][answer].votes.concat([authUser])
             }
           }
         }

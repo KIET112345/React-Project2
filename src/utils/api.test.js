@@ -29,9 +29,9 @@ describe("saveQuestion", () => {
 describe("saveQuestionAnswer", () => {
   it("will save the answer to a question", async () => {
     const authUser = "shinichiKudo";
-    const question_id = "8xf0y6ziyjabvozdd253nd";
+    const questionId = "8xf0y6ziyjabvozdd253nd";
     const answer = "optionTwo";
-    const questionAnswer = await saveQuestionAnswer(authUser, question_id, answer);
+    const questionAnswer = await saveQuestionAnswer(authUser, questionId, answer);
 
     expect(questionAnswer).toBe(true);
   });

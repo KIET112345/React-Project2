@@ -5,14 +5,14 @@ export default function users(state = {}, action) {
     case RECEIVE_USERS:
       return { ...state, ...action.users };
     case ADD_ANSWER_TO_USER:
-      const { authUser, question_id, answer } = action;
+      const { authedUser, questionId, answer } = action;
       return {
         ...state,
-        [authUser]: {
-          ...state[authUser],
+        [authedUser]: {
+          ...state[authedUser],
           answers: {
-            ...state[authUser].answers,
-            [question_id]: answer
+            ...state[authedUser].answers,
+            [questionId]: answer
           }
         }
       };

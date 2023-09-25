@@ -104,20 +104,20 @@ const UserCard = (props) => {
 
 function mapStateToProps(
   { users, questions, authUser },
-  { router, question_id }
+  { router, questionId }
 ) {
   let question,
     pollType,
     author,
     wrongPath = false;
 
-  if (question_id !== undefined) {
-    question = questions[question_id];
+  if (questionId !== undefined) {
+    question = questions[questionId];
     pollType = POLL_TYPES.POLL_TEASER;
     author = users[question.author];
   } else {
-    const { question_id } = router.params;
-    question = questions[question_id];
+    const { questionId } = router.params;
+    question = questions[questionId];
     const user = users[authUser];
 
     if (question === undefined) {

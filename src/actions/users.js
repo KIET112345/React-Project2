@@ -30,10 +30,10 @@ function onAddAnswerToUser(authedUser, questionId, answer) {
   };
 }
 
-export function addQuestionToUser({ questionId, author }) {
+export function addQuestionToUser({ id, author }) {
   return {
     type: ADD_QUESTION_TO_USER,
-    questionId,
+    id,
     author,
   };
 }

@@ -30,15 +30,15 @@ describe("_saveQuestion", () => {
 describe("_saveQuestionAnswer", () => {
   it("will verify that true is returned when correct data is passed", async () => {
     const authUser = "shinichiKudo";
-    const question_id = "8xf0y6ziyjabvozdd253nd";
+    const questionId = "8xf0y6ziyjabvozdd253nd";
     const answer = "optionOne";
-    const questionAnswer = { authUser, question_id, answer };
+    const questionAnswer = { authUser, questionId, answer };
     await expect(_saveQuestionAnswer(questionAnswer)).resolves.toBe(true);
   });
 
   it("will return an error", async () => {
     await expect(_saveQuestionAnswer({})).rejects.toEqual(
-      "Please provide authUser, question_id, and answer"
+      "Please provide authUser, questionId, and answer"
     );
   });
 });

@@ -11,7 +11,7 @@ const Panes = (props) => {
           {userQuestionData.unanswered.map((question) => (
             <UserCard
               key={question.id}
-              question_id={question.id}
+              questionId={question.id}
               unanswered={true}
             />
           ))}
@@ -25,7 +25,7 @@ const Panes = (props) => {
           {userQuestionData.answered.map((question) => (
             <UserCard
               key={question.id}
-              question_id={question.id}
+              questionId={question.id}
               unanswered={false}
             />
           ))}
