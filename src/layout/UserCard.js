@@ -8,13 +8,13 @@ import TeaserPoll from "./TeaserPoll";
 import { withRouterHandle } from "../utils/helper";
 
 const COLORS = {
-  green: {
-    name: "green",
-    hex: "#21ba45",
+  yellow: {
+    name: "yellow",
+    hex: "#FFFF00",
   },
-  blue: {
-    name: "blue",
-    hex: "#2185d0",
+  olive: {
+    name: "olive",
+    hex: "#808000",
   },
   grey: {
     name: null,
@@ -48,7 +48,7 @@ const UserCard = (props) => {
   if (wrongPath) {
     return <Navigate to="questions/wrongId" />;
   }
-  const tabColor = unanswered ? COLORS.green : COLORS.blue;
+  const tabColor = unanswered ? COLORS.yellow : COLORS.olive;
   const borderTop = !unanswered
     ? `1 px solid ${COLORS.grey}`
     : `2px solid ${tabColor.hex}`;

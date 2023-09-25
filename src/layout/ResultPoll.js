@@ -6,7 +6,7 @@ import YourVoteLabel from "./YourVoteLabel";
 
 const styles = {
   primary: {
-    color: "green",
+    color: "yellow",
     bgColor: "honeydew",
   },
   secondary: {

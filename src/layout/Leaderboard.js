@@ -53,7 +53,7 @@ const Leaderboard = (props) => {
                 <Segment.Group>
                   <Header as="h5" block attached="top" content="Score" />
                   <Segment>
-                    <Label circular color="blue" size="big">
+                    <Label circular color="olive" size="big">
                       {user.questionCount + user.answerCount}
                     </Label>
                   </Segment>

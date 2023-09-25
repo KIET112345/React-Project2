@@ -5,8 +5,8 @@ export const withRouterHandle = (Component) => {
   const ComponentWithRouter = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const param = useParams();
-    return <Component {...props} router={{ location, navigate, param}} />;
+    const params = useParams();
+    return <Component {...props} router={{ location, navigate, params}} />;
   }
   return ComponentWithRouter;
 }

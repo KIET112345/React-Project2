@@ -40,7 +40,7 @@ const QuestionPoll = (props) => {
         </Form.Field>
         <Form.Field>
           <Button
-            color="green"
+            color="yellow"
             size="tiny"
             fluid
             positive

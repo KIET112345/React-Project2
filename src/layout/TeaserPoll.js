@@ -7,20 +7,20 @@ const COLORS = {
     name: null,
     hex: "#d4d4d5",
   },
-  green: {
-    name: "green",
-    hex: "#21ba45",
+  yellow: {
+    name: "yellow",
+    hex: "#FFFF00",
   },
-  blue: {
-    name: "blue",
-    hex: "#2185d0",
+  olive: {
+    name: "olive",
+    hex: "#008080",
   }
 };
 
 const TeaserPoll = (props) => {
   const { question, unanswered } = props;
   const [viewPoll, setViewPoll] = useState(false);
-  const BUTTON_COLOR = unanswered ? COLORS.green : COLORS.blue;
+  const BUTTON_COLOR = unanswered ? COLORS.yellow : COLORS.olive;
   const handleClick = (e) => {
     setViewPoll(!viewPoll);
   };
