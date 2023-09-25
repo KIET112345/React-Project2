@@ -13,6 +13,6 @@ export function saveQuestion(question) {
     return _saveQuestion(question);
 }
   
-export function saveQuestionAnswer(authUser, questionId, answer) {
-    return _saveQuestionAnswer({ authUser, questionId, answer });
+export function saveQuestionAnswer(authedUser, questionId, answer) {
+    return _saveQuestionAnswer({ authedUser, questionId, answer });
 }

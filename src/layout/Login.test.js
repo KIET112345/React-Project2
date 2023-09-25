@@ -1,61 +1,61 @@
-import * as React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { within } from '@testing-library/dom'
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import Login from './Login';
+import * as React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import thunk from "redux-thunk";
+import { within } from "@testing-library/react";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+import Login from "./Login";
 
 const mockStore = configureStore([thunk]);
 
-describe('Login', () => {
-    let store, component;
+describe("Login", () => {
+  let store, Component;
 
-    beforeEach(() => {
-        store = mockStore({
-            users: {
-                sarahedo: {
-                    id: 'sarahedo',
-                    name: 'Sarah Edo',
-                },
-                tylermcginnis: {
-                    id: 'tylermcginnis',
-                    name: 'Tyler McGinnis',
-                },
-                mtsamis: {
-                    id: 'mtsamis',
-                    name: 'Mike Tsamis',
-                },
-                zoshikanlu: {
-                    id: 'zoshikanlu',
-                    name: 'Zenobia Oshikanlu',
-                },
-            },
-        });
+  beforeEach(() => {
+    store = mockStore({
+      users: {
+        sarahedo: {
+          id: "sarahedo",
+          name: "Sarah Edo",
+        },
+        mtsamis: {
+          id: "mtsamis",
+          name: "Mike Tsamis",
+        },
+        tylermcginnis: {
+          id: "tylermcginnis",
+          name: "Tyler McGinnis",
+        },
+        zoshikanlu: {
+          id: "zoshikanlu",
+          name: "Zenobia Oshikanlu",
+        },
+      },
     });
+  });
 
-    it('will match snapshot', () => {
-        component = render(
-            <Provider store = {store}>
-                <Login />
-            </Provider>
-        );
+  it("will match Snapshot", () => {
+    Component = render(
+      <Provider store={store}>
+        <Login />
+      </Provider>
+    );
 
-        expect(component).toMatchSnapshot();
-    });
+    expect(Component).toMatchSnapshot();
+  });
 
-    it('should select a user from the dropdown', () => {
-        const { getByTestId } = render(
-            <Provider store = {store}>
-                <Login />
-            </Provider>
-        )
+  it("should select a user from the dropdown", () => {
+    const { getByTestId } = render(
+      <Provider store={store}>
+        <Login />
+      </Provider>
+    );
 
-        component = getByTestId('Test Component');
-        const dropdownOptions = within(component).getAllByRole('option');
-        const option = dropdownOptions[1];
-        
-        fireEvent.click(option);
-        expect(option.getAttribute('aria-selected')).toBe('true');
-      });
-})
+    Component = getByTestId("Test Component");
+    const dropdownOptions = within(Component).getAllByRole("option");
+    const option = dropdownOptions[1];
+
+    fireEvent.click(option);
+    expect(option.getAttribute("aria-selected")).toBe("true");
+  });
+});

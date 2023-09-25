@@ -1,18 +1,8 @@
 import { getInitialData, saveQuestion, saveQuestionAnswer } from "./api";
 
-describe("getInitialData", () => {
-  it("will load initial data", async () => {
-    const { users, questions } = await getInitialData();
-
-    expect(users).toBeDefined();
-    expect(questions).toBeDefined();
-  });
-});
-
-
 describe("saveQuestion", () => {
-  it("will save the question", async () => {
-    const author = "shinichiKudo";
+  it("will save question", async () => {
+    const author = "zoshikanlu";
     const optionOneText = "Option 1";
     const optionTwoText = "Option 2";
     const question = await saveQuestion({
@@ -25,14 +15,31 @@ describe("saveQuestion", () => {
   });
 });
 
+describe("getInitialData", () => {
+  it("will get initial data for app", async () => {
+    const { users, questions } = await getInitialData();
+    expect(users).toBeDefined();
+    expect(questions).toBeDefined();
+  });
+});
 
 describe("saveQuestionAnswer", () => {
   it("will save the answer to a question", async () => {
-    const authUser = "shinichiKudo";
-    const questionId = "8xf0y6ziyjabvozdd253nd";
+    const authUser = "sarahedo";
+    const questionId = "6ni6ok3ym7mf1p33lnez";
     const answer = "optionTwo";
-    const questionAnswer = await saveQuestionAnswer(authUser, questionId, answer);
+    const questionAnswer = await saveQuestionAnswer(
+      authUser,
+      questionId,
+      answer
+    );
 
     expect(questionAnswer).toBe(true);
+  });
+
+  it("will return an error message", async () => {
+    await expect(saveQuestionAnswer()).rejects.toEqual(
+      "Please provide authedUser, questionId, and answer"
+    );
   });
 });
